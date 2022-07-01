@@ -1,25 +1,25 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: qbonvin <qbonvin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 13:38:32 by qbonvin           #+#    #+#              #
-#    Updated: 2022/06/10 13:47:45 by qbonvin          ###   ########.fr        #
+#    Updated: 2022/06/20 17:03:20 by qbonvin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc -g
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 OBJ = ${SRCS:.c=.o}
-SRCS = main.c
+SRCS = main.c utils.c init_philo.c
 
 all : ${NAME}
 
 ${NAME} : ${OBJ}
-	${CC} ${CFLAGS} -o ${NAME} {OBJ}
+	${CC} -lpthread ${CFLAGS} -o ${NAME} ${OBJ}
 
 clean :
 	rm -rf ${OBJ}

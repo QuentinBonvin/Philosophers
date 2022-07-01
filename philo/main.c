@@ -5,54 +5,83 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbonvin <qbonvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 10:28:14 by qbonvin           #+#    #+#             */
-/*   Updated: 2022/06/10 13:44:19 by qbonvin          ###   ########.fr       */
+/*   Created: 2022/06/10 14:40:10 by qbonvin           #+#    #+#             */
+/*   Updated: 2022/07/01 11:23:17 by qbonvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
 
-bool mustExit = false;
+#include "philo.h"
 
-// La fonction sur laquelle vont démarrer nos deux threads
-int threadMain( void * data ) {
-    const char * threadName = (const char *) data;
-    while( ! mustExit ) {
-        printf( "%s\n", threadName );
-    }
-    printf( "%s terminé !\n", threadName );
-    return thrd_success;
+int	main(int argc, char **argv)
+{
+	t_table	parsing;
+
+	if (parsing_argument(argc, argv, &parsing))
+	{
+		printf("error\n");
+		exit(EXIT_FAILURE);
+	}
+	init_philo(&parsing);
+	printf("get time = %zu", get_time());
+	return (EXIT_SUCCESS);
 }
 
+int	parsing_argument(int argc, char **argv, t_table *parsing)
+{
+	if ((argc == 5 || argc == 6) && argv_is_digit(argv) && argv_is_int(argv))
+	{
+		parsing->number_of_philo = ft_atoi(argv[1]);
+		parsing->time_to_die = ft_atoi(argv[2]);
+		parsing->time_to_eat = ft_atoi(argv[3]);
+		parsing->time_to_sleep = ft_atoi(argv[4]);
+		if (argc == 6)
+			parsing->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+		return (0);
+	}
+	return (1);
+}
 
-int main() {
+int	argv_is_digit(char **argv)
+{
+	int	i;
+	int	j;
 
-    // On crée un premier thread.
-    thrd_t thread1;
-    void * threadName1 = (void *) "Mon premier thread";
-    if ( thrd_create( &thread1, threadMain, threadName1 ) != thrd_success ) {
-        fprintf( stderr, "Impossible de créer le premier thread\n" );
-        return EXIT_FAILURE;
-    }
+	i = 1;
+	j = 0;
+	while (argv[i])
+	{
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]))
+			{
+				printf("not a digit number\n");
+				exit (0);
+			}
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	return (1);
+}
 
-    // On crée un second thread.
-    thrd_t thread2;
-    void * threadName2 = (void *) "Mon second thread";
-    if ( thrd_create( &thread2, threadMain, threadName2 ) != thrd_success ) {
-        fprintf( stderr, "Impossible de créer le second thread\n" );
-        return EXIT_FAILURE;
-    }
+int			argv_is_int(char **argv)
+{
+	int			i;
+	long int 	nbr;
 
-    // Appuyez sur la touche <ENTER> pour stopper le programme.
-    char ch;
-    scanf( "%c", &ch );
-    
-    // Tous les threads d'un même processus partagent la même zone de mémoire.
-    // Les deux threads doivent donc voir cette variable et se suspendrent
-    // quand cela sera nécessaire.
-    mustExit = true;
-
-    // On sort du programme.
-    printf( "Le thread initial/principal s'arrête.\n" );
-    return EXIT_SUCCESS;
+	nbr = 0;
+	i = 1;
+	while (argv[i])
+	{
+		nbr = ft_atol(argv[i]);
+		if (nbr > INT_MAX)
+		{
+			printf("not an integer\n");
+			exit (0);
+		}
+		i++;
+	}
+	return (1);
 }
