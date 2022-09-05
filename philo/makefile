@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qbonvin <qbonvin@student.42.fr>            +#+  +:+       +#+         #
+#    By: quentin <quentin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 13:38:32 by qbonvin           #+#    #+#              #
-#    Updated: 2022/06/20 17:03:20 by qbonvin          ###   ########.fr        #
+#    Updated: 2022/09/02 15:53:13 by quentin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 CC = gcc -g
 CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 OBJ = ${SRCS:.c=.o}
-SRCS = main.c utils.c init_philo.c
+SRCS = main.c utils.c init_philo.c philo_eat.c maintoloog.c
 
 all : ${NAME}
 
