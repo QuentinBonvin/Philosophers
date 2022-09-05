@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: quentin <quentin@student.42.fr>            +#+  +:+       +#+         #
+#    By: qbonvin <qbonvin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 13:38:32 by qbonvin           #+#    #+#              #
-#    Updated: 2022/09/02 15:53:13 by quentin          ###   ########.fr        #
+#    Updated: 2022/09/05 16:36:37 by qbonvin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 CC = gcc -g
 CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 OBJ = ${SRCS:.c=.o}
-SRCS = main.c utils.c init_philo.c philo_eat.c maintoloog.c
+SRCS = main.c utils.c utils2.c display_message.c dead_exit.c parsing.c routine.c
 
 all : ${NAME}
 

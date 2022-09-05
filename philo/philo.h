@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbonvin <qbonvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:28:05 by qbonvin           #+#    #+#             */
-/*   Updated: 2022/09/02 15:46:52 by quentin          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:35:10 by qbonvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct s_philo {
 typedef struct s_table {
 	int				dead;
 	int				eaten_all;
-	int				number_of_philo;
+	int				nbr_of_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				number_of_times_each_philosopher_must_eat;
+	int				nbr_max_eat;
 	size_t			start_time;
 	t_philo			*philo;
 	pthread_mutex_t	statut;
@@ -60,9 +60,9 @@ void		philo_eat(t_philo *philo);
 void		display_statut(t_philo *philo, int message);
 char		*display_message(int message);
 void		waiting_statut(t_table *table, size_t time_to_dead);
-void		checker_dead(t_table *table);
+void		checker_dead(t_table *tab);
 void		exit_philo(t_table *tab, pthread_t *thread);
-void		main_toolong(t_table *tab, pthread_t *tid);
+void		dead_and_exit(t_table *tab, pthread_t *tid);
 
 enum	e_message
 {
