@@ -6,7 +6,7 @@
 /*   By: qbonvin <qbonvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:14:04 by qbonvin           #+#    #+#             */
-/*   Updated: 2022/09/05 16:26:21 by qbonvin          ###   ########.fr       */
+/*   Updated: 2022/09/06 14:09:55 by qbonvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	parsing_argument(int argc, char **argv, t_table *table)
 		table->time_to_die = ft_atoi(argv[2]);
 		table->time_to_eat = ft_atoi(argv[3]);
 		table->time_to_sleep = ft_atoi(argv[4]);
+		table->nbr_max_eat = -1;
 		if (argc == 6)
 			table->nbr_max_eat = ft_atoi(argv[5]);
 		create_table(table);
